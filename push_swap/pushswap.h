@@ -6,7 +6,7 @@
 /*   By: muyazici <muyazici@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:36:26 by muyazici          #+#    #+#             */
-/*   Updated: 2022/09/06 16:31:29 by muyazici         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:13:32 by muyazici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,21 @@
 #include <unistd.h>
 #include <stdarg.h>
 
-typedef struct a_list
+typedef struct s_list
 {
-	char	*content;
-	struct a_list	*next;
-}				t_a;
+	int				content;
+	struct s_list	*next;
+}				t_s;
 
-typedef struct b_list
-{
-	char	*content;
-	struct b_list	*next;
-}				t_b;
 
-void lst_add_back(t_a **a, t_a *new);
-t_a	*ft_lstnew(char *data);
-t_a *ft_lstlast(t_a *a);
-void	sa(t_a *a);
-void	sb(t_b *b);
-void	pb(t_a **a, t_b **b);
-void	lst_add_front(t_a **a, t_b **b);
-t_b	*ft_lstnewb(char *data);
+void lst_add_back(t_s **a, t_s *new);
+t_s	*ft_lstnew(int data);
+t_s *ft_lstlast(t_s *a);
+void	sa(t_s *a);
+void	sb(t_s *b);
+void	pb(t_s **a, t_s **b);
+void	lst_add_front(t_s **a, t_s **b);
+int	ft_atoi(const char *str);
+void	pa(t_s **a, t_s **b);
 
 #endif
