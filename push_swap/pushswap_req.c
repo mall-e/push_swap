@@ -6,7 +6,7 @@
 /*   By: muyazici <muyazici@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 15:21:33 by muyazici          #+#    #+#             */
-/*   Updated: 2022/09/07 17:12:57 by muyazici         ###   ########.fr       */
+/*   Updated: 2022/09/08 13:37:14 by muyazici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,32 @@ void	sa(t_s *a)
 {
 	int	temp;
 
-	temp = a->content;
-	a->content = a->next->content;
-	a->next->content = temp;
+	if (a != NULL && a->next != NULL)
+	{
+		temp = a->content;
+		a->content = a->next->content;
+		a->next->content = temp;
+	}
 }
 
 void	sb(t_s *b)
 {
 	int	temp;
 
-	temp = b->content;
-	b->content = b->next->content;
-	b->next->content = temp;
+	if (b != NULL && b->next != NULL)
+	{
+		temp = b->content;
+		b->content = b->next->content;
+		b->next->content = temp;
+	}
+}
+
+void	ss(t_s *a, t_s *b)
+{
+	printf("zırt\n");
+	sa(a);
+	printf("zort\n");
+	sb(b);
 }
 
 void	pb(t_s **a, t_s **b)
