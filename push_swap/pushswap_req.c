@@ -6,7 +6,7 @@
 /*   By: muyazici <muyazici@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 15:21:33 by muyazici          #+#    #+#             */
-/*   Updated: 2022/09/08 13:37:14 by muyazici         ###   ########.fr       */
+/*   Updated: 2022/09/14 09:56:27 by muyazici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	sa(t_s *a)
 		a->content = a->next->content;
 		a->next->content = temp;
 	}
+	write(1, "sa\n", 3);
 }
 
 void	sb(t_s *b)
@@ -34,6 +35,7 @@ void	sb(t_s *b)
 		b->content = b->next->content;
 		b->next->content = temp;
 	}
+	write(1, "sb\n", 3);
 }
 
 void	ss(t_s *a, t_s *b)
@@ -42,6 +44,7 @@ void	ss(t_s *a, t_s *b)
 	sa(a);
 	printf("zort\n");
 	sb(b);
+	write(1, "ss\n", 3);
 }
 
 void	pb(t_s **a, t_s **b)
@@ -66,6 +69,7 @@ void	pb(t_s **a, t_s **b)
 		(*a) = (*a)->next;
 
 	(*b)->next = temp;
+	write(1, "pb\n", 3);
 }
 
 void	pa(t_s **a, t_s **b)
@@ -90,5 +94,6 @@ void	pa(t_s **a, t_s **b)
 		(*b) = (*b)->next;
 
 	(*a)->next = temp;
+	write(1, "pa\n", 3);
 }
 
