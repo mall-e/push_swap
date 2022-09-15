@@ -6,7 +6,7 @@
 /*   By: muyazici <muyazici@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 13:38:30 by muyazici          #+#    #+#             */
-/*   Updated: 2022/09/08 17:10:26 by muyazici         ###   ########.fr       */
+/*   Updated: 2022/09/15 14:10:15 by muyazici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void	rra(t_s **a)
 	t_s	*temp;
 
 	temp = *a;
-	//printf("%d\n", temp->content);
 	*a = ft_lstnew(ft_lstlast(*a)->content);
-	//printf("%d\n",ft_lstlast(a)->content);
 	(*a)->next = temp;
+	ft_lstend(*a);
+	write(1, "rra\n", 4);
 }
 
 void	rrb(t_s **b)
@@ -32,6 +32,7 @@ void	rrb(t_s **b)
 	*b = ft_lstnew(ft_lstlast(*b)->content);
 	//printf("%d\n",ft_lstlast(a)->content);
 	(*b)->next = temp;
+	write(1, "rrb\n", 4);
 }
 
 void	ra(t_s **a)
@@ -43,6 +44,7 @@ void	ra(t_s **a)
 	(*a) = (*a)->next;
 	zort = ft_lstlast((*a)->next);
 	zort->next = temp;
+	write(1, "ra\n", 3);
 }
 
 void	rb(t_s **b)
@@ -54,4 +56,5 @@ void	rb(t_s **b)
 	(*b) = (*b)->next;
 	zort = ft_lstlast((*b)->next);
 	zort->next = temp;
+	write(1, "rb\n", 3);
 }

@@ -6,7 +6,7 @@
 /*   By: muyazici <muyazici@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:36:26 by muyazici          #+#    #+#             */
-/*   Updated: 2022/09/08 17:10:34 by muyazici         ###   ########.fr       */
+/*   Updated: 2022/09/15 14:21:45 by muyazici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ t_s		*ft_lstnew(int data);
 t_s		*ft_lstlast(t_s *a);
 int		ft_atoi(const char *str);
 void	lst_add_front(t_s **a, t_s **b);
+void	ft_lstend(t_s *a);
+int		ft_lstlen(t_s *a);
 void	sa(t_s *a);
 void	sb(t_s *b);
 void	pb(t_s **a, t_s **b);
