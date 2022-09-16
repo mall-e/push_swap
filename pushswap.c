@@ -6,7 +6,7 @@
 /*   By: muyazici <muyazici@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:36:15 by muyazici          #+#    #+#             */
-/*   Updated: 2022/09/15 17:07:48 by muyazici         ###   ########.fr       */
+/*   Updated: 2022/09/16 14:01:46 by muyazici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,41 +92,6 @@ void	sort(t_s **a, t_s **b)
 	}
 }
 
-void	sortf3(t_s **a, t_s **b)
-{
-	t_s	*tmp;
-
-	tmp = *a;
-	if (minnumber(a)->content == tmp->next->content)
-	{
-		sa(*a);
-		if ((*a)->next->content < (*a)->next->next->content)
-			return;
-	}
-	else if (minnumber(a)->content == (*a)->content)
-	{
-		if ((*a)->next->content > (*a)->next->next->content)
-		{
-			pb(a, b);
-			sa(*a);
-			pa(a, b);
-		}
-	}
-	else if (minnumber(a)->content == (*a)->next->next->content)
-	{
-		rra(a);
-		if ((*a)->next->content < (*a)->next->next->content)
-			return ;
-		else
-		{
-			pb(a, b);
-			sa(*a);
-			pa(a, b);
-		}
-	}
-
-}
-
 int	main(int ac, char **av)
 {
 	t_s *a;
@@ -145,14 +110,15 @@ int	main(int ac, char **av)
 		last++;
 	}
 	int i = 0;
-	//printf("min number: %d\n", minnumber(&a)->content);
+	//printf("max number: %d\n", maxnumber(&a)->content);
+	printf("flashsonuc: %d\n", flash(&a, 10));
 	//printf("list lenght: %d\n", ft_lstlen(a));
 	sortf3(&a,&b);
 	//sort(&a, &b);
 	//printf("a:\n");
 	while (i< ac - 1)
 	{
-		//printf("%d\n",a->content);
+		printf("%d\n",a->content);
 		a = a->next;
 		i++;
 	}
