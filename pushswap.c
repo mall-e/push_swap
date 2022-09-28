@@ -6,7 +6,7 @@
 /*   By: muyazici <muyazici@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:36:15 by muyazici          #+#    #+#             */
-/*   Updated: 2022/09/16 14:01:46 by muyazici         ###   ########.fr       */
+/*   Updated: 2022/09/28 17:12:50 by muyazici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,9 +111,13 @@ int	main(int ac, char **av)
 	}
 	int i = 0;
 	//printf("max number: %d\n", maxnumber(&a)->content);
-	printf("flashsonuc: %d\n", flash(&a, 10));
+	//printf("flashsonuc: %d\n", flash(&a, 10));
 	//printf("list lenght: %d\n", ft_lstlen(a));
-	sortf3(&a,&b);
+	ranking(a);
+	printf("rank : %d\n", a->rank);
+	printf("ac ============= %d\n",ac);
+	lowerforty(&a, &b, ac);
+	//sortf3(&a,&b);
 	//sort(&a, &b);
 	//printf("a:\n");
 	while (i< ac - 1)

@@ -6,7 +6,7 @@
 /*   By: muyazici <muyazici@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:36:26 by muyazici          #+#    #+#             */
-/*   Updated: 2022/09/16 13:41:07 by muyazici         ###   ########.fr       */
+/*   Updated: 2022/09/28 17:12:54 by muyazici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,15 @@
 typedef struct s_list
 {
 	int				content;
+	int				rank;
 	struct s_list	*next;
 }				t_s;
 
 
 void	sortf3(t_s **a, t_s **b);
-int	flash(t_s **a, int num);
+//int	flash(t_s **a, int num);
+void	ranking(t_s *a);
+void	lowerforty(t_s **a, t_s **b, int ac);
 t_s		*minnumber(t_s **a);
 t_s		*maxnumber(t_s **a);
 t_s		*ft_lstlast(t_s *a);
