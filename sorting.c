@@ -6,7 +6,7 @@
 /*   By: muyazici <muyazici@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 10:05:08 by muyazici          #+#    #+#             */
-/*   Updated: 2022/09/28 17:15:45 by muyazici         ###   ########.fr       */
+/*   Updated: 2022/11/01 14:03:25 by muyazici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,12 @@
 
 void	sortf3(t_s **a, t_s **b)
 {
-	if (minnumber(a)->content == (*a)->next->content)
+	if (ft_lstlen(*a) == 2)
+	{
+		if (minnumber(a)->content != (*a)->content)
+			sa(*a);
+	}
+	else if (minnumber(a)->content == (*a)->next->content)
 	{
 		sa(*a);
 		if ((*a)->next->content < (*a)->next->next->content)
@@ -29,36 +34,37 @@ void	sortf3(t_s **a, t_s **b)
 	}
 	else if (minnumber(a)->content == (*a)->next->next->content)
 	{
-		rra(a);
-		if ((*a)->next->content < (*a)->next->next->content)
-			return ;
+		if ((*a)->content < (*a)->next->content)
+			rra(a);
 		else
 		{
-			pb(a, b);
-			sa(*a);
-			pa(a, b);
+			ra(a);
+			ra(a);
 		}
 	}
 }
 
-void	ranking(t_s *a)
+void	ranking(t_s **a)
 {
 	t_s	*tmp;
 	t_s	*tmp2;
+	t_s	*tmp3;
 
-	tmp = a;
-	tmp2 = a;
-	while (a)
+	tmp = *a;
+	tmp2 = *a;
+	tmp3 = *a;
+	while (*a)
 	{
 		tmp = tmp2;
 		while(tmp)
 		{
-			if (a->content >= tmp->content)
-				a->rank++;
+			if ((*a)->content >= tmp->content)
+				(*a)->rank++;
 			tmp = tmp->next;
 		}
-		a = a->next;
+		*a = (*a)->next;
 	}
+	*a = tmp3;
 }
 
 t_s	*maxnumber(t_s **b)
@@ -67,11 +73,11 @@ t_s	*maxnumber(t_s **b)
 	t_s	*max;
 
 	tmp = (*b);
-	max = ft_lstnew(tmp->content);
+	max = ft_lstnew(tmp->content, tmp->rank);
 	while (tmp->next)
 	{
 		if (tmp->content < tmp->next->content && max->content < tmp->next->content)
-			max = ft_lstnew(tmp->next->content);
+			max = ft_lstnew(tmp->next->content, tmp->next->rank);
 		tmp = tmp->next;
 	}
 	return (max);
@@ -117,34 +123,4 @@ void	firstmax(t_s **a, t_s *max, t_s **b)
 		}
 	}
 	pa(a, b);
-}
-
-void	lowerforty(t_s **a, t_s **b, int ac)
-{
-	int	i;
-	t_s	*tmp;
-
-	tmp = *a;
-	i = 40;
-	if (ac < 40)
-		return ;
-	while (i <= ac)
-	{
-		tmp = *a;
-		while (tmp)
-		{
-			if (tmp->rank <= i)
-				pb(a, b);
-			else
-				ra(a);
-			tmp = tmp->next;
-		}
-		i+= 40;
-	}
-	i -= 40;
-	while (i)
-	{
-		firstmax(a,maxnumber(b),b);
-		i--;
-	}
 }

@@ -6,7 +6,7 @@
 /*   By: muyazici <muyazici@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:36:15 by muyazici          #+#    #+#             */
-/*   Updated: 2022/09/28 17:12:50 by muyazici         ###   ########.fr       */
+/*   Updated: 2022/11/01 15:31:24 by muyazici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,11 @@ t_s	*minnumber(t_s **a)
 	t_s *min;
 
 	tmp = (*a);
-	min = ft_lstnew(tmp->content);
+	min = ft_lstnew(tmp->content, tmp->rank);
 	while (tmp->next)
 	{
 		if (tmp->content > tmp->next->content && min->content > tmp->next->content)
-			min = ft_lstnew(tmp->next->content);
+			min = ft_lstnew(tmp->next->content, tmp->next->rank);
 		tmp = tmp->next;
 	}
 	return (min);
@@ -74,7 +74,6 @@ t_s	*minnumber(t_s **a)
 void	sort(t_s **a, t_s **b)
 {
 	int	alen;
-	int	blen;
 
 	alen = ft_lstlen(*a);
 	alen--;
@@ -83,13 +82,7 @@ void	sort(t_s **a, t_s **b)
 		firstmin(a, minnumber(a), b);
 		alen--;
 	}
-	blen = ft_lstlen(*b);
-	blen--;
-	while (blen)
-	{
-		pa(a,b);
-		blen--;
-	}
+	pallb(a,b);
 }
 
 int	main(int ac, char **av)
@@ -101,40 +94,46 @@ int	main(int ac, char **av)
 	a = malloc(sizeof(t_s));
 	b = malloc(sizeof(t_s));
 	a = NULL;
-	last = ac - 1;
+	b = NULL;
+	int	c;
+	c = 0;
+	last = 1;
+	if (ac <= 2)
+		return (0);
+	while (av[last])
+	{
+		if(!ft_atoi(av[last]) && ft_strcmp(av[last], "0"))
+			return (write (1, "Error\n", 6));
+		last++;
+	}
 	last = 1;
 	while (av[last])
 	{
-		//printf("args: %s\n", av[last]);
-		lst_add_back(&a, ft_lstnew(ft_atoi(av[last])));
+		lst_add_back(&a, ft_lstnew(ft_atoi(av[last]), 0));
 		last++;
 	}
-	int i = 0;
-	//printf("max number: %d\n", maxnumber(&a)->content);
-	//printf("flashsonuc: %d\n", flash(&a, 10));
-	//printf("list lenght: %d\n", ft_lstlen(a));
-	ranking(a);
-	printf("rank : %d\n", a->rank);
-	printf("ac ============= %d\n",ac);
-	lowerforty(&a, &b, ac);
-	//sortf3(&a,&b);
-	//sort(&a, &b);
-	//printf("a:\n");
-	while (i< ac - 1)
+	if (ac <= 4)
+		sortf3(&a,&b);
+	if (ac > 4 && ac < 10)
 	{
-		printf("%d\n",a->content);
-		a = a->next;
-		i++;
+		// while (c < ft_lstlen(a))
+		// {
+		// 	firstmin(&a, minnumber(&a), &b);
+		// 	c++;
+		// }
+		// pallb(&a, &b);
+		sort(&a, &b);
 	}
-	//printf("b:\n");
-	i= 0;
-	// while (i< ac - 1)
+	ranking(&a);
+	if (ac > 10)
+		upperhundered(&a,&b,ac);
+
+	// while (a !=NULL )
 	// {
-	// 	printf("%d\n",b->content);
-	// 	b = b->next;
-	// 	i++;
+	// 	printf("%d\n",a->content);
+	// 	a = a->next;
 	// }
-}
+ }
 
 
 	// printf("|\t\t~\t\t|");

@@ -6,7 +6,7 @@
 /*   By: muyazici <muyazici@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 15:20:15 by muyazici          #+#    #+#             */
-/*   Updated: 2022/09/15 14:22:15 by muyazici         ###   ########.fr       */
+/*   Updated: 2022/11/01 13:45:12 by muyazici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,13 @@ void lst_add_back(t_s **a, t_s *new)
 	temp->next = new;
 }
 
-t_s	*ft_lstnew(int data)
+t_s	*ft_lstnew(int data, int rank)
 {
 	t_s *new;
 
 	new = malloc(sizeof(t_s));
 	new->content = data;
+	new->rank = rank;
 	new->next = NULL;
 	return(new);
 }
@@ -73,4 +74,18 @@ int	ft_atoi(const char *str)
 			return (0);
 	}
 	return ((int)(sonuc * eksi));
+}
+
+int	ft_strcmp(char *s1, char *s2)
+{
+	unsigned char	*str1;
+	unsigned char	*str2;
+	int				i;
+
+	i = 0;
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
+	while (str1[i] == str2[i] && str1[i] && str2[i])
+		i++;
+	return (str1[i] - str2[i]);
 }

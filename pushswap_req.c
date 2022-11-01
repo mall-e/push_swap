@@ -6,7 +6,7 @@
 /*   By: muyazici <muyazici@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 15:21:33 by muyazici          #+#    #+#             */
-/*   Updated: 2022/09/14 09:56:27 by muyazici         ###   ########.fr       */
+/*   Updated: 2022/10/26 14:41:19 by muyazici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,51 +49,83 @@ void	ss(t_s *a, t_s *b)
 
 void	pb(t_s **a, t_s **b)
 {
-	t_s *temp;
+	t_s	*temp;
 
-	temp = *b;
-	if (!*b)
+	temp = (t_s *)malloc(sizeof(t_s));
+	if (!temp)
+		return ;
+	temp->content = (*a)->content;
+	temp->rank = (*a)->rank;
+	temp->next = NULL;
+	if (!b)
 	{
-		(*b)= ft_lstnew((*a)->content);
-		(*b)->next = NULL;
+		(*b) = temp;
 		return ;
 	}
-	if (!*a)
-	{
-		*a = NULL;
-		(*a)->next = NULL;
-		return ;
-	}
-	(*b)= ft_lstnew((*a)->content);
-	if ((*a)->next != NULL)
-		(*a) = (*a)->next;
+	temp->next = (*b);
+	(*b) = temp;
+	(*a) = (*a)->next;
+	// t_s *temp;
 
-	(*b)->next = temp;
-	write(1, "pb\n", 3);
+	// temp = *b;
+	// if (!*b)
+	// {
+	// 	(*b)= ft_lstnew((*a)->content);
+	// 	(*b)->next = NULL;
+	// 	return ;
+	// }
+	// if (!*a)
+	// {
+	// 	*a = NULL;
+	// 	(*a)->next = NULL;
+	// 	return ;
+	// }
+	// (*b)= ft_lstnew((*a)->content);
+	// if ((*a)->next != NULL)
+	// 	(*a) = (*a)->next;
+
+	// (*b)->next = temp;
+	 write(1, "pb\n", 3);
 }
 
 void	pa(t_s **a, t_s **b)
 {
-	t_s *temp;
+	// t_s *temp;
 
-	temp = *a;
-	if (!*a)
+	// temp = *a;
+	// if (!*a)
+	// {
+	// 	(*a)= ft_lstnew((*b)->content);
+	// 	(*a)->next = NULL;
+	// 	return ;
+	// }
+	// if (!*b)
+	// {
+	// 	*b = NULL;
+	// 	(*b)->next = NULL;
+	// 	return ;
+	// }
+	// (*a)= ft_lstnew((*b)->content);
+	// if ((*b)->next != NULL)
+	// 	(*b) = (*b)->next;
+
+	// (*a)->next = temp;
+	 write(1, "pa\n", 3);
+	t_s	*temp;
+
+	temp = (t_s *)malloc(sizeof(t_s));
+	if (!temp)
+		return ;
+	temp->content = (*b)->content;
+	temp->rank = (*b)->rank;
+	temp->next = NULL;
+	if (!a)
 	{
-		(*a)= ft_lstnew((*b)->content);
-		(*a)->next = NULL;
+		(*a) = temp;
 		return ;
 	}
-	if (!*b)
-	{
-		*b = NULL;
-		(*b)->next = NULL;
-		return ;
-	}
-	(*a)= ft_lstnew((*b)->content);
-	if ((*b)->next != NULL)
-		(*b) = (*b)->next;
-
-	(*a)->next = temp;
-	write(1, "pa\n", 3);
+	temp->next = (*a);
+	(*a) = temp;
+	(*b) = (*b)->next;
 }
 
