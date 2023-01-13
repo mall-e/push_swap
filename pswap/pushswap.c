@@ -6,12 +6,15 @@
 /*   By: muyazici <muyazici@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:36:15 by muyazici          #+#    #+#             */
-/*   Updated: 2022/11/01 15:31:24 by muyazici         ###   ########.fr       */
+/*   Updated: 2023/01/13 14:21:14 by muyazici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 #include <string.h>
+
+void	allsorting(t_s *a, t_s *b, int ac);
+int		is_counttwo(char **tmp, int i);
 
 void	firstmin(t_s **a, t_s *min, t_s **b)
 {
@@ -57,15 +60,16 @@ void	firstmin(t_s **a, t_s *min, t_s **b)
 
 t_s	*minnumber(t_s **a)
 {
-	t_s *tmp;
-	t_s *min;
+	t_s	*tmp;
+	t_s	*min;
 
 	tmp = (*a);
-	min = ft_lstnew(tmp->content, tmp->rank);
+	min = *a;
 	while (tmp->next)
 	{
-		if (tmp->content > tmp->next->content && min->content > tmp->next->content)
-			min = ft_lstnew(tmp->next->content, tmp->next->rank);
+		if (tmp->content > tmp->next->content
+			&& min->content > tmp->next->content)
+			min = tmp->next;
 		tmp = tmp->next;
 	}
 	return (min);
@@ -82,100 +86,69 @@ void	sort(t_s **a, t_s **b)
 		firstmin(a, minnumber(a), b);
 		alen--;
 	}
-	pallb(a,b);
+	pallb(a, b);
 }
 
 int	main(int ac, char **av)
 {
-	t_s *a;
-	t_s *b;
-	int	last;
+	t_s		*a;
+	t_s		*b;
+	char	**tmp;
+	int		i;
 
 	a = malloc(sizeof(t_s));
 	b = malloc(sizeof(t_s));
 	a = NULL;
 	b = NULL;
-	int	c;
-	c = 0;
-	last = 1;
-	if (ac <= 2)
+	tmp = NULL;
+	if (ac < 2)
+		return (write(2, "Error\n", 6));
+	else if (ac == 2)
+	{
+		tmp = ft_split(av[1], ' ');
+		i = -1;
+		while (tmp[++i])
+			lst_add_back(&a, ft_lstnew(ft_atoi(tmp[i]), 0));
+		if (is_counttwo(tmp, 0))
+			return (write (2, "Error\n", 6));
+	}
+	else if (ac > 2)
+	{
+		i = 0;
+		while (av[++i])
+			lst_add_back(&a, ft_lstnew(ft_atoi(av[i]), 0));
+		if (is_counttwo(av, 1))
+			return (write (2, "Error\n", 6));
+	}
+	if (ft_lstlen(a) == 1 || ft_lstlen(a) == 0 || is_sorted(a))
 		return (0);
-	while (av[last])
+	if (is_same(a))
+		return (write (2, "Error\n", 6));
+	//printf("BURADASIN == %d\n", __LINE__);
+	allsorting(a, b, ac);
+	//printf("BURADASIN == %d\n", __LINE__)
+
+	//free_func(a);
+	t_s *temp_b;
+	//while (b)
+	//{
+	//	temp_b = b;
+	//	b = b->next;
+	//	free(temp_b);
+	//}
+	//while (a)
+	//{
+	//	temp_b = a;
+	//	a = a->next;
+	//	free(temp_b);
+	//	//printf("stemp : %d\n", (*stemp)->next->content);
+	//}
+	i = 0;
+	while (tmp && tmp[i])
 	{
-		if(!ft_atoi(av[last]) && ft_strcmp(av[last], "0"))
-			return (write (1, "Error\n", 6));
-		last++;
+		free(tmp[i]);
+		i++;
 	}
-	last = 1;
-	while (av[last])
-	{
-		lst_add_back(&a, ft_lstnew(ft_atoi(av[last]), 0));
-		last++;
-	}
-	if (ac <= 4)
-		sortf3(&a,&b);
-	if (ac > 4 && ac < 10)
-	{
-		// while (c < ft_lstlen(a))
-		// {
-		// 	firstmin(&a, minnumber(&a), &b);
-		// 	c++;
-		// }
-		// pallb(&a, &b);
-		sort(&a, &b);
-	}
-	ranking(&a);
-	if (ac > 10)
-		upperhundered(&a,&b,ac);
-
-	// while (a !=NULL )
-	// {
-	// 	printf("%d\n",a->content);
-	// 	a = a->next;
-	// }
- }
-
-
-	// printf("|\t\t~\t\t|");
-	// printf("\n|\tA\t|\tB\t|\n");
-
-// void	sorting(t_s **a, t_s **b)
-// {
-// 	t_s	*temp;
-// 	int	i;
-// 	//int	j;
-
-// 	i = 0;
-// 	temp = (*a);
-// 	while (temp->next)
-// 	{
-// 		if(temp->content > temp->next->content)
-// 		{
-// 			sa(*a);
-// 			pb(a, b);
-// 			pb(a, b);
-// 		}
-// 		temp = temp->next;
-// 	}
-// }
-
-
-
-
-	// printf("\npb: \n");
-	// i = 0;
-	// while (i < ac - 3)
-	// {
-	// 	if (!(b->content))
-	// 		b->content = 0;
-	// 	if (!(a->content))
-	// 		a->content = 0;
-	// 	if (a->next == NULL)
-	// 		a->content = 0;
-	// 	printf("|\t%d\t|\t%d\t|\n", a->content, b->content);
-	// 	if (a->next != NULL)
-	// 		a = a->next;
-
-	// 	b = b->next;
-	// 	i++;
-	// }
+	free(tmp);
+	system("leaks push_swap");
+}

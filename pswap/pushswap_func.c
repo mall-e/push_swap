@@ -6,13 +6,13 @@
 /*   By: muyazici <muyazici@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 15:20:15 by muyazici          #+#    #+#             */
-/*   Updated: 2022/11/01 13:45:12 by muyazici         ###   ########.fr       */
+/*   Updated: 2022/12/21 16:44:16 by muyazici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-void lst_add_back(t_s **a, t_s *new)
+void	lst_add_back(t_s **a, t_s *new)
 {
 	t_s	*temp;
 
@@ -28,16 +28,17 @@ void lst_add_back(t_s **a, t_s *new)
 
 t_s	*ft_lstnew(int data, int rank)
 {
-	t_s *new;
+	t_s	*new;
 
 	new = malloc(sizeof(t_s));
 	new->content = data;
+	//printf("lstnew: %d\n", new->content);
 	new->rank = rank;
 	new->next = NULL;
-	return(new);
+	return (new);
 }
 
-t_s *ft_lstlast(t_s *a)
+t_s	*ft_lstlast(t_s *a)
 {
 	if (a)
 	{

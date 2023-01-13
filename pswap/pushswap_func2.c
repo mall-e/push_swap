@@ -6,22 +6,26 @@
 /*   By: muyazici <muyazici@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 14:15:39 by muyazici          #+#    #+#             */
-/*   Updated: 2022/10/12 17:10:28 by muyazici         ###   ########.fr       */
+/*   Updated: 2023/01/13 14:19:14 by muyazici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-int	ft_lstlen(t_s *a)
+int	ft_lstlen(t_s *lst)
 {
-
 	int	i;
 
 	i = 0;
-	while (a != NULL)
+	if (!lst)
+		return 0;
+	if (lst)
 	{
-		a = a -> next;
-		i++;
+		while (lst != NULL)
+		{
+			lst = lst -> next;
+			i++;
+		}
 	}
 	return (i);
 }
@@ -43,10 +47,37 @@ void	pallb(t_s **a, t_s **b)
 
 	i = 0;
 	blen = ft_lstlen(*b);
-	//printf("blen : %d\n", blen);
 	while (i < blen)
 	{
-		pa(a,b);
+		pa(a, b);
 		i++;
 	}
+}
+
+int	ft_strlen(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+
+int	is_same(t_s *a)
+{
+	t_s	*cmp;
+
+	while ((a))
+	{
+		cmp = (a)->next;
+		while (cmp)
+		{
+			if (cmp->content == (a)->content)
+				return (1);
+			cmp = cmp->next;
+		}
+		(a) = (a)->next;
+	}
+	return (0);
 }

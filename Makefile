@@ -1,13 +1,18 @@
-NAME = pushswap.a
+NAME = push_swap
+FILES = $(shell find ./pswap -name "*.c")
+CFLAGS = -Wall -Wextra
+CC = gcc
+OBJ = $(FILES:.c=.o)
 
 all: $(NAME)
 
-$(NAME):
-	gcc -Wall -Wextra -Werror *.c -o pushswap
+$(NAME): ${OBJ}
+	$(CC) $(CFLAGS) ${OBJ} -o $(NAME)
 
 clean:
-	rm -rf pushswap
+	rm -rf ${OBJ}
 
 fclean: clean
+	rm -rf ${NAME}
 
 re: clean fclean all
